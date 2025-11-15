@@ -1,0 +1,43 @@
+# URLs de acionamento
+
+@local = http://localhost:8080
+
+### Recuperar mcps cadastrados
+GET {{local}}/api/v1/mcp-servers
+
+### Ativar MCP Server por ID
+PATCH {{local}}/api/v1/mcp-servers/6918cf3676d9152f05fee4be
+
+{
+    "status": "ATIVO",
+    "aprovador": "Diego Peixoto"
+}
+
+### Cadastrar um mcp-server
+POST {{local}}/api/v1/mcp-servers
+Content-Type: application/json
+
+{
+    "nome": "MCP DARP 2",
+    "descricao": "mcp que deve configurar o repositório do desenvolvedor para trabalhar no padrão da empresa DARP.",
+    "versao": "1.0.0",
+    "url": "https://mcp.darp.com.br/mcp",
+    "responsavel": "Equipe DARP",
+    "contato": "darp@email.com"
+}
+
+### Cadastrar um mcp-server com cmpos NULL
+POST {{local}}/api/v1/mcp-servers
+Content-Type: application/json
+
+{
+    "nome": "",
+    "descricao": "mcp que deve configurar o repositório do desenvolvedor para trabalhar no padrão da empresa DARP.",
+    "versao": "1.0.0",
+    "url": "https://mcp.darp.com.br/mcp",
+    "responsavel": "Equipe DARP",
+    "contato": "darp@email.com"
+}
+
+### Consulta mcps ativos
+GET {{local}}/api/v1/mcp-servers?status=ATIVO
